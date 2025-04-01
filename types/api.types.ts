@@ -90,7 +90,24 @@ export interface PaymentMethod {
   expired: boolean;
 }
 
-// Stub for BillingAddress (replace this with the correct shape if available)
+export interface OrdersResponsePayload {
+  currentPage: number;
+  itemsPerPage: number;
+  totalItems: number;
+  orders: [
+    {
+      id: string;
+      orderNumber: string;
+      status: string;
+      orderDate: string;
+      totalLineItemQuantity: number;
+      totalPrice: number;
+      shippingMethod: string;
+      hasAutoShip: boolean;
+    },
+  ];
+}
+
 export interface BillingAddress {
   [key: string]: any; // You can refine this further based on actual billing address fields
 }

@@ -42,11 +42,30 @@ export default defineConfig({
       testMatch: 'auth.setup.ts',
     },
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'], storageState: './.auth/user.json' },
+      name: 'API Tests',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: './.auth/user.json',
+        baseURL: 'https://api.petvalu.ca',
+      },
 
       dependencies: ['setup'],
-      testDir: './tests',
+      testDir: './tests/api',
+      testMatch: '**/*.spec.ts',
+    },
+    {
+      name: 'UI Tests',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: './.auth/user.json',
+        baseURL: 'https://www.petvalu.ca/',
+        permissions: ['geolocation'],
+        geolocation: { latitude: 43.7, longitude: -79.4 },
+        locale: 'en-CA',
+      },
+
+      dependencies: ['setup'],
+      testDir: './tests/UI',
       testMatch: '**/*.spec.ts',
     },
   ],
